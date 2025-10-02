@@ -1109,7 +1109,7 @@ define Device/comfast_cf-wr632ax
   DEVICE_DTS := mt7981b-comfast-cf-wr632ax
   DEVICE_DTS_DIR := ../dts
   SUPPORTED_DEVICES += comfast,cf-wr632ax
-  DEVICE_PACKAGES := automount kmod-usb3 kmod-hwmon-pwmfan kmod-usb-net-rndis kmod-usb-serial-option f2fsck losetup mkf2fs kmod-fs-f2fs kmod-mmc luci-app-fancontrol
+  DEVICE_PACKAGES := automount kmod-usb3 kmod-hwmon-pwmfan kmod-usb-net-rndis kmod-usb-serial-option f2fsck losetup mkf2fs kmod-fs-f2fs luci-app-fancontrol
   KERNEL := kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
   KERNEL_INITRAMFS := kernel-bin | lzma | \
         fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
