@@ -13,7 +13,7 @@ char thermal_file[MAX_LENGTH] = "/sys/devices/virtual/thermal/thermal_zone0/temp
 char fan_file[MAX_LENGTH] = "/sys/devices/virtual/thermal/cooling_device0/cur_state";   // -F
 
 int start_speed = 35;   // -s
-int start_temp = 45;    // -t
+int start_temp = 60;    // -t
 int max_speed = 255;    // -m
 int temp_div = 1000;    // -d
 int debug_mode = 0;     // -D
