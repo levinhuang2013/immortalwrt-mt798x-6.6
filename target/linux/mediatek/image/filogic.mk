@@ -1103,6 +1103,20 @@ define Device/h3c_magic-nx30-pro-nmbm
 endef
 TARGET_DEVICES += h3c_magic-nx30-pro-nmbm
 
+define Device/comfast_cf-wr632ax
+  DEVICE_VENDOR := COMFAST
+  DEVICE_MODEL := CF-WR632AX
+  DEVICE_DTS := mt7981b-comfast-cf-wr632ax
+  DEVICE_DTS_DIR := ../dts
+  SUPPORTED_DEVICES += comfast,cf-wr632ax
+  DEVICE_PACKAGES := automount kmod-usb3 kmod-hwmon-pwmfan kmod-usb-net-rndis kmod-usb-serial-option f2fsck losetup mkf2fs kmod-fs-f2fs kmod-mmc luci-app-fancontrol
+  KERNEL := kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+  KERNEL_INITRAMFS := kernel-bin | lzma | \
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += comfast_cf-wr632ax
+
 define Device/huasifei_wh3000-pro
   DEVICE_VENDOR := Huasifei
   DEVICE_MODEL := WH3000 Pro
