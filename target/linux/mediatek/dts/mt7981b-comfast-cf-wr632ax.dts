@@ -14,8 +14,7 @@
 		serial0 = &uart0;
 		led-boot = &wifi_blue;
 		led-failsafe = &wan_red;
-		led-running = &lan_green;
-		led-upgrade = &lan_green;
+		led-upgrade = &wan_red;
 	};
 
 	chosen {
@@ -73,7 +72,6 @@
 	status = "okay";
 
 	gmac0: mac@0 {
-		/* WAN */
 		compatible = "mediatek,eth-mac";
 		nvmem-cells = <&macaddr_factory_e000 1>;
 		nvmem-cell-names = "mac-address";
@@ -84,7 +82,6 @@
 	};
 
 	gmac1: mac@1 {
-		/* LAN */
 		compatible = "mediatek,eth-mac";
 		nvmem-cells = <&macaddr_factory_e000 0>;
 		nvmem-cell-names = "mac-address";
