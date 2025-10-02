@@ -46,7 +46,7 @@ return view.extend({
 		o.placeholder = '255';
 
 		o = s.option(form.Value, 'start_temp', _('Start Temperature'), _('Please enter the fan start temperature.'));
-		o.placeholder = '45';
+		o.placeholder = '60';
 
 		return m.render();
 	}
