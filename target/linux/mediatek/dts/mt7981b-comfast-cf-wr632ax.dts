@@ -12,14 +12,13 @@
 	aliases {
 		label-mac-device = &gmac0;
 		serial0 = &uart0;
-		led-boot = &wifi_blue;
-		led-failsafe = &wan_red;
-		led-running = &lan_green;
-		led-upgrade = &wan_red;
+		led-boot = &led_red;
+		led-failsafe = &led_red;
+		led-running = &led_green;
+		led-upgrade = &led_red;
 	};
 
 	chosen {
-		bootargs-override = "console=ttyS0,115200n8";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -41,19 +40,19 @@
 	leds {
 		compatible = "gpio-leds";
 
-		wifi_blue: wifi_blue {
+		led_blue: blue {
 			gpios = <&pio 8 GPIO_ACTIVE_LOW>;
 			color = <LED_COLOR_ID_BLUE>;
-			function = LED_FUNCTION_WLAN;
-		};
-
-		wan_red: wan_red {
-			gpios = <&pio 34 GPIO_ACTIVE_LOW>;
-			color = <LED_COLOR_ID_RED>;
 			function = LED_FUNCTION_WAN_ONLINE;
 		};
 
-		lan_green: lan_green {
+		led_red: red {
+			gpios = <&pio 34 GPIO_ACTIVE_LOW>;
+			color = <LED_COLOR_ID_RED>;
+			function = LED_FUNCTION_STATUS;
+		};
+
+		led_green: green {
 			gpios = <&pio 35 GPIO_ACTIVE_LOW>;
 			color = <LED_COLOR_ID_GREEN>;
 			function = LED_FUNCTION_STATUS;
@@ -73,16 +72,18 @@
 	status = "okay";
 
 	gmac0: mac@0 {
+		/* WAN */
 		compatible = "mediatek,eth-mac";
 		nvmem-cells = <&macaddr_factory_e000 1>;
 		nvmem-cell-names = "mac-address";
 		reg = <0>;
 
 		phy-mode = "2500base-x";
-        phy-handle = <&phy0>;
+		phy-handle = <&phy0>;
 	};
 
 	gmac1: mac@1 {
+		/* LAN */
 		compatible = "mediatek,eth-mac";
 		nvmem-cells = <&macaddr_factory_e000 0>;
 		nvmem-cell-names = "mac-address";
@@ -135,12 +136,12 @@
 		};
 	};
 
-    pwm0_pin: pwm0-pin-g0 {
-        mux {
-            function = "pwm";
-            groups = "pwm0_0";
-        };
-    };
+	pwm0_pin: pwm0-pin-g0 {
+		mux {
+			function = "pwm";
+			groups = "pwm0_0";
+		};
+	};
 };
 
 &xhci {
