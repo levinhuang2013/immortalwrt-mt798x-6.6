@@ -114,7 +114,7 @@ mediatek_setup_interfaces()
 	openwrt,one|\
 	comfast,cf-wr632ax|\
 	openfi,6c*)
-		ucidef_set_interfaces_lan_wan "eth1" eth0
+		ucidef_set_interfaces_lan_wan eth1 eth0
 		;;
 	dlink,aquila-pro-ai-m30-a1|\
 	dlink,aquila-pro-ai-m60-a1)
