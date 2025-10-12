@@ -8,7 +8,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=mt_wifi
 
-MT7981_FW_DIR := mt7981-fw-20240613
+MT7981_FW_DIR := mt7981-fw-20240924
 MT7986_FW_DIR := mt7986-asus-ax6000
 
 ifeq ($(CONFIG_MTK_CHIP_MT7981),y)
@@ -345,7 +345,6 @@ if [ "$$(CONFIG_MTK_WIFI_FW_BIN_LOAD)" = "y" ]; then \
 	fi; \
 	if [ "$$(CONFIG_MTK_CHIP_MT7981)" = "y" ] ; then \
 		$(INSTALL_BIN) ./files/mt7981-default-eeprom/MT7981_iPAiLNA_EEPROM.bin \
-		./files/mt7981-default-eeprom/e2p \
 		./files/mt7981-default-eeprom/MT7981_ePAeLNA_EEPROM.bin $(1)/lib/firmware/; \
 		if [ "$$(CONFIG_MTK_MT7981_NEW_FW)" = "y" ]; then \
 			$(INSTALL_BIN) ./files/$$(MT7981_FW_DIR)/WIFI_RAM_CODE_MT7981.bin \
