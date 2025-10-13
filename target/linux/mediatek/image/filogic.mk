@@ -1047,13 +1047,35 @@ define Device/openfi_6c
   DEVICE_DTS := mt7981b-openfi-6c
   DEVICE_DTS_DIR := ../dts
   SUPPORTED_DEVICES += openfi,6c
-  DEVICE_PACKAGES := automount  kmod-hwmon-pwmfan kmod-usb-net-rndis kmod-usb-serial-option f2fsck losetup mkf2fs kmod-fs-f2fs kmod-mmc luci-app-openfi 
+  DEVICE_PACKAGES := automount kmod-hwmon-pwmfan kmod-usb-net-rndis kmod-usb-serial-option f2fsck losetup mkf2fs kmod-fs-f2fs kmod-mmc luci-app-openfi 
   KERNEL := kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
   KERNEL_INITRAMFS := kernel-bin | lzma | \
         fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 endef
 TARGET_DEVICES += openfi_6c
+
+define Device/sx-7981r128
+  DEVICE_VENDOR := SX
+  DEVICE_MODEL := 7981R128
+  DEVICE_DTS := mt7981b-spim-nand-7981r128
+  DEVICE_DTS_DIR := ../dts
+  SUPPORTED_DEVICES += sx,7981r128
+  UBINIZE_OPTS := -E 5
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  IMAGE_SIZE := 116736k
+  UBOOTENV_IN_UBI := 1
+  KERNEL_IN_UBI := 1
+  IMAGES += factory.bin
+  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  DEVICE_PACKAGES := automount blkid blockdev fdisk kmod-nls-cp437 kmod-nls-iso8859-1 kmod-usb2 kmod-usb3 usbutils kmod-sfp sgdisk
+  KERNEL := kernel-bin | lzma | fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+  KERNEL_INITRAMFS := kernel-bin | lzma | \
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
+endef
+TARGET_DEVICES += sx-7981r128
 
 define Device/h3c_magic-nx30-pro
   DEVICE_VENDOR := H3C
