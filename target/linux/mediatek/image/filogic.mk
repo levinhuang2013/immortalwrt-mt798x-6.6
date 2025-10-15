@@ -1118,8 +1118,7 @@ define Device/comfast_cf-wr632ax
   PAGESIZE := 2048
   IMAGE_SIZE := 114688k
   KERNEL_IN_UBI := 1
-  IMAGES := sysupgrade.bin factory.bin
-  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
+  IMAGES := sysupgrade.bin
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 endef
 TARGET_DEVICES += comfast_cf-wr632ax
