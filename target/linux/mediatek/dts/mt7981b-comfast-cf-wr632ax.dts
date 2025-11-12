@@ -68,26 +68,25 @@
 &eth {
 	pinctrl-names = "default";
 	pinctrl-0 = <&mdio_pins>;
-
 	status = "okay";
 
 	gmac0: mac@0 {
-		/* WAN */
 		compatible = "mediatek,eth-mac";
 		nvmem-cells = <&macaddr_factory_e000 1>;
 		nvmem-cell-names = "mac-address";
 		reg = <0>;
+		label = "wan";
 
 		phy-mode = "2500base-x";
 		phy-handle = <&phy0>;
 	};
 
 	gmac1: mac@1 {
-		/* LAN */
 		compatible = "mediatek,eth-mac";
 		nvmem-cells = <&macaddr_factory_e000 0>;
 		nvmem-cell-names = "mac-address";
 		reg = <1>;
+		label = "lan";
 
 		phy-mode = "gmii";
 		phy-handle = <&int_gbe_phy>;
@@ -108,7 +107,6 @@
 &pwm {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pwm0_pin>;
-
 	status = "okay";
 };
 
@@ -155,18 +153,13 @@
 &spi0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&spi0_flash_pins>;
-	cs-gpios = <0>, <0>;
-	#address-cells = <1>;
-	#size-cells = <0>;
 	status = "okay";
-	#address-cells = <1>;
-	#size-cells = <0>;
 
-	spi_nand: spi_nand@1 {
+	spi_nand: spi_nand@0 {
 		#address-cells = <1>;
 		#size-cells = <1>;
 		compatible = "spi-nand";
-		reg = <1>;
+		reg = <0>;
 		spi-max-frequency = <52000000>;
 
 		spi-cal-enable;
