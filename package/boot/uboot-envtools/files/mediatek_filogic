@@ -96,6 +96,7 @@ konka,komi-a31)
 	esac
 	;;
 cetron,ct3003|\
+comfast,cf-wr632ax|\
 edgecore,eap111|\
 h3c,magic-nx30-pro-nmbm|\
 livinet,zr-3020|\
@@ -104,7 +105,6 @@ zbtlink,zbt-z8102ax|\
 zbtlink,zbt-z8103ax)
 	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x20000" "0x20000"
 	;;
-comfast,cf-wr632ax|\
 comfast,cf-e393ax)
 	ubootenv_add_uci_config "/dev/mtd1" "0x0" "0x20000" "0x80000"
 	;;
