@@ -75,7 +75,6 @@
 		nvmem-cells = <&macaddr_factory_e000 1>;
 		nvmem-cell-names = "mac-address";
 		reg = <0>;
-		label = "wan";
 
 		phy-mode = "2500base-x";
 		phy-handle = <&phy0>;
@@ -86,7 +85,6 @@
 		nvmem-cells = <&macaddr_factory_e000 0>;
 		nvmem-cell-names = "mac-address";
 		reg = <1>;
-		label = "lan";
 
 		phy-mode = "gmii";
 		phy-handle = <&int_gbe_phy>;
@@ -155,11 +153,11 @@
 	pinctrl-0 = <&spi0_flash_pins>;
 	status = "okay";
 
-	spi_nand: spi_nand@0 {
+	spi_nand: spi_nand@1 {
 		#address-cells = <1>;
 		#size-cells = <1>;
 		compatible = "spi-nand";
-		reg = <0>;
+		reg = <1>;
 		spi-max-frequency = <52000000>;
 
 		spi-cal-enable;
